@@ -1,5 +1,4 @@
-# $File: //member/autrijus/Encode-HanConvert/README $ $Author: autrijus $
-# $Revision: #3 $ $Change: 10738 $ $DateTime: 2004/06/03 20:56:41 $
+# $Id$
 
 This is the README file for Encode::HanConvert, two encoding
 formats to facilitate mappings between traditional and simplified
@@ -29,7 +28,8 @@ documentation.
 
 * Copyright
 
-Copyright 2002, 2003, 2004 by Autrijus Tang <autrijus@autrijus.org>.
+Copyright 2002, 2003, 2004 by Audreyt Tang <cpan@audreyt.org>.
+Copyright 2006 by Kuang-che Wu <kcwu@csie.org>.
 
 All rights reserved.  You can redistribute and/or modify
 this bundle under the same terms as Perl itself.
