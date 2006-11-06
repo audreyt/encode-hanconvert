@@ -1,0 +1,50 @@
+This file contains message digests of all files listed in MANIFEST,
+signed via the Module::Signature module, version 0.38.
+
+To verify the content in this distribution, first make sure you have
+Module::Signature installed, then type:
+
+    % cpansign -v
+
+It would check each file's integrity, as well as the signature's
+validity.  If "==> Signature verified OK! <==" is not displayed,
+the distribution may already have been compromised, and you should
+not run its Makefile.PL or Build.PL.
+
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+SHA1 73d8325b60f31423ba347175e68ed1333da87aba AUTHORS
+SHA1 38f5c73c59291efdd267c9e8c9dd13b2349e5a54 Changes
+SHA1 c0832a36d506c72a232bc484010a46eb08cd0fe5 MANIFEST
+SHA1 1c7d9e741bb97253754f09768bcbfcbc67e6be53 MANIFEST.SKIP
+SHA1 938d5614e959a992fc941ac97b714121dcfc562f META.yml
+SHA1 0e2b9e30d1164dae082463f0d61ad86a2b4dee92 Makefile.PL
+SHA1 6676874e4088490109a4527aef7756caed7cabe3 README
+SHA1 714b44692d4b623ee9ba1c1548b3357d06ec60c7 bin/b2g.pl
+SHA1 edec38ed8d7ce73e7c9240aba49db69b25ce6074 bin/g2b.pl
+SHA1 0083e2410d78fb51d1261220f7c405ccc4468333 lib/Encode/HanConvert.pm
+SHA1 d2696b10943ccfe363e282cf169781196010936d lib/Encode/HanConvert/Perl.pm-orig
+SHA1 ea387659a8513c9aa19ee9b4b3a4307813aeb6e7 map/b2g_map.txt
+SHA1 4fbba6f4ce0fb76d9b5bce165fdf6e36a6473b3e map/b2g_map.utf8
+SHA1 dc06a5b3492fa75ae8471fd4784067f07e15e07d map/g2b_map.txt
+SHA1 f54c68f0a7dc60259d310161947e3bb95a99d034 map/g2b_map.utf8
+SHA1 1e738843a58c866e0aa39b64a25904eb8b5f46b9 map/map2pm.pl
+SHA1 94d245e4bda7e2219c88f965aa9595622bb9fbe1 map/map2ucm.pl
+SHA1 c047487a5b50aa6c37629bc3c6ea364ed25904dc map/ucm2map.pl
+SHA1 dfa4cf0c3ff30f6719fd2900a17aa2a2dcc8dc57 map/umap2ucm.pl
+SHA1 d0d5f740628c73eb7f53edc34351dfa20d6f95e0 t/0-signature.t
+SHA1 c444f867864a4e83c44a6e3da7ec46d0f7a505c9 t/1-basic.t
+SHA1 9306fcf697159a51e4979b96d8bbb1ae9d3834d3 t/daode.b5
+SHA1 9e3c273d27cbd6cb521238153add907fa935da58 t/daode.gbk
+SHA1 150be0f55f7911f4fa2ea660ba3396481e4a767f t/daode_g.b5
+SHA1 c78f9934ff08e2aa09d74e4b7352ed44e89fd3aa t/zhengqi.b5
+SHA1 325cecec4c25d579634f4a423ccf91b9330cb330 t/zhengqi.gbk
+SHA1 325cecec4c25d579634f4a423ccf91b9330cb330 t/zhengqi_b.gbk
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.2.3 (FreeBSD)
+
+iD8DBQFAwCHOtLPdNzw1AaARAg9XAKCekKEM88UZJiEKoLeBmrNP7JyREgCfSwsI
+28FmX7i5TzRauIbAUh/Yeic=
+=rVdN
+-----END PGP SIGNATURE-----
