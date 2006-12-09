@@ -1,6 +1,5 @@
 #!/usr/local/bin/perl
-# $File: //member/autrijus/Encode-HanConvert/bin/b2g.pl $ $Author: autrijus $
-# $Revision: #14 $ $Change: 10740 $ $DateTime: 2004/06/03 22:02:31 $
+# $Id$
 
 $VERSION = '0.12';
 
@@ -382,11 +381,13 @@ L<g2b.pl>, L<Encode::HanConvert>
 
 =head1 AUTHORS
 
+Currently maintained by Kuang-che Wu E<lt>kcwu@csie.orgE<gt>.  Orignal author:
 Audreyt Tang E<lt>cpan@audreyt.orgE<gt>
 
 =head1 COPYRIGHT
 
 Copyright 2002, 2003, 2004 by Augreyt Tang E<lt>cpan@audreyt.orgE<gt>.
+Copyright 2006 by Kuang-che Wu E<lt>kcwu@csie.orgE<gt>.
 
 This program is free software; you can redistribute it and/or 
 modify it under the same terms as Perl itself.
