@@ -2,6 +2,9 @@
 
 * Fix map for U+FE35 in b2g_map.utf8.
 
+* Fix a bug that b2g.pl and g2b.pl with -u flag won't set encoding correct if
+  providing file name in command line.
+
 ____________________________________________________________________________
 [ 10742] By: autrijus                              on 2004/06/04  07:15:15
         Log: * This be 0.31.

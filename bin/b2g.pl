@@ -2,7 +2,7 @@
 # $File: //member/autrijus/Encode-HanConvert/bin/b2g.pl $ $Author: autrijus $
 # $Revision: #14 $ $Change: 10740 $ $DateTime: 2004/06/03 22:02:31 $
 
-$VERSION = '0.11';
+$VERSION = '0.12';
 
 =head1 NAME
 
@@ -56,16 +56,31 @@ use constant DICT => ($opts{p} and (!UTF8 or $] >= 5.008));
 
 use Encode::HanConvert;
 
-if (UTF8 and $] >= 5.008) { binmode(STDIN, ':utf8'); binmode(STDOUT, ':utf8') }
-
 my $KEYS = join('|', map quotemeta, sort { length($b) <=> length($a) } keys %{+MAP}) if DICT;
 my $MAP  = +MAP if DICT;
 
-while (<>) {
-    if (UTF8) { Encode::HanConvert::trad_to_simp($_) }
-	 else { Encode::HanConvert::big5_to_gb($_) }
-    if (DICT) { s/($KEYS)/$MAP->{$1}/g }
-    print;
+if (@ARGV) {
+    for (@ARGV) {
+	unless(open F, $_) {
+	    warn "Can't open $_: $!";
+	    next;
+	}
+	convert(\*F);
+	close F;
+    }
+} else {
+    convert(\*STDIN);
+}
+
+sub convert {
+    my ($fh) = @_;
+    if (UTF8 and $] >= 5.008) { binmode($fh, ':utf8'); binmode($fh, ':utf8') }
+    while (<$fh>) {
+	if (UTF8) { Encode::HanConvert::trad_to_simp($_) }
+	else { Encode::HanConvert::big5_to_gb($_) }
+	if (DICT) { s/($KEYS)/$MAP->{$1}/g }
+	print;
+    }
 }
 
 use constant MAP => DICT && {
