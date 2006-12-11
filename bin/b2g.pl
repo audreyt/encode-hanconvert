@@ -73,7 +73,7 @@ if (@ARGV) {
 
 sub convert {
     my ($fh) = @_;
-    if (UTF8 and $] >= 5.008) { binmode($fh, ':utf8'); binmode($fh, ':utf8') }
+    if (UTF8 and $] >= 5.008) { binmode($fh, ':utf8'); binmode(STDOUT, ':utf8') }
     while (<$fh>) {
 	if (UTF8) { Encode::HanConvert::trad_to_simp($_) }
 	else { Encode::HanConvert::big5_to_gb($_) }
