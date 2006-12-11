@@ -73,10 +73,18 @@ if (@ARGV) {
 
 sub convert {
     my ($fh) = @_;
-    if (UTF8 and $] >= 5.008) { binmode($fh, ':utf8'); binmode(STDOUT, ':utf8') }
+    if ($] >= 5.008) {
+	if (UTF8) {
+	    binmode($fh, ':encoding(trad-simp)'); binmode(STDOUT, ':utf8')
+	} else {
+	    binmode($fh, ':encoding(big5-simp)'); binmode(STDOUT, ':encoding(gbk)')
+	}
+    }
     while (<$fh>) {
-	if (UTF8) { Encode::HanConvert::trad_to_simp($_) }
-	else { Encode::HanConvert::big5_to_gb($_) }
+	unless ($] >= 5.008) {
+	    if (UTF8) { Encode::HanConvert::trad_to_simp($_) }
+	    else { Encode::HanConvert::big5_to_gb($_) }
+	}
 	if (DICT) { s/($KEYS)/$MAP->{$1}/g }
 	print;
     }

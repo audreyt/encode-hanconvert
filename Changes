@@ -13,6 +13,8 @@
 * Preserve unicode character as-is if it is not in the mapping table trad-simp
   and simp-trad.
 
+* Command line tool b2g.pl and g2b.pl speed up 3.5(-u) to 5(not -u) times.
+
 ____________________________________________________________________________
 [ 10742] By: autrijus                              on 2004/06/04  07:15:15
         Log: * This be 0.31.
