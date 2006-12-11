@@ -5,6 +5,14 @@
 * Fix a bug that b2g.pl and g2b.pl with -u flag won't set encoding correct if
   providing file name in command line.
 
+* Fix lots of questionable pairs in b2g_map.txt.
+
+* Since some mapping in unicode and not in the range of big5/gbk, unicode
+  mappings (trad-simp and simp-trad) are maintained seperately now.
+
+* Preserve unicode character as-is if it is not in the mapping table trad-simp
+  and simp-trad.
+
 ____________________________________________________________________________
 [ 10742] By: autrijus                              on 2004/06/04  07:15:15
         Log: * This be 0.31.
