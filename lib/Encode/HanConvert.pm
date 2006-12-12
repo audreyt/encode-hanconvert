@@ -3,7 +3,7 @@
 package Encode::HanConvert;
 use vars qw/$VERSION @EXPORT @EXPORT_OK/;
 
-$VERSION = '0.32';
+$VERSION = '0.33';
 @EXPORT = qw(
     big5_to_gb trad_to_simp big5_to_simp gb_to_trad big5_to_trad gb_to_simp
     gb_to_big5 simp_to_trad simp_to_big5 trad_to_gb trad_to_big5 simp_to_gb
@@ -116,7 +116,7 @@ Encode::HanConvert - Traditional and Simplified Chinese mappings
 
 =head1 VERSION
 
-This document describes version 0.32 of Encode::HanConvert, released
+This document describes version 0.33 of Encode::HanConvert, released
 Dec 12, 2006.
 
 =head1 SYNOPSIS
