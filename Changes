@@ -1,7 +1,5 @@
 [Changes for ?.?? - ? ???, ????]
 
-* Fix map for U+FE35 in b2g_map.utf8.
-
 * Fix a bug that b2g.pl and g2b.pl with -u flag won't set encoding correct if
   providing file name in command line.
 
@@ -14,6 +12,8 @@
   and simp-trad.
 
 * Command line tool b2g.pl and g2b.pl speed up 3.5(-u) to 5(not -u) times.
+
+* Remove symbols and questionable pairs from unicode mapping.
 
 ____________________________________________________________________________
 [ 10742] By: autrijus                              on 2004/06/04  07:15:15
