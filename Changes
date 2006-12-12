@@ -1,4 +1,4 @@
-[Changes for ?.?? - ? ???, ????]
+[Changes for 0.32 - Dec 12, 2006]
 
 * Fix a bug that b2g.pl and g2b.pl with -u flag won't set encoding correct if
   providing file name in command line.
