@@ -438,11 +438,11 @@ L<b2g.pl>, L<Encode::HanConvert>
 =head1 AUTHORS
 
 Currently maintained by Kuang-che Wu E<lt>kcwu@csie.orgE<gt>.  Orignal author:
-Audreyt Tang E<lt>cpan@audreyt.orgE<gt>
+Audrey Tang E<lt>cpan@audreyt.orgE<gt>
 
 =head1 COPYRIGHT
 
-Copyright 2002, 2003, 2004 by Audreyt Tang E<lt>cpan@audreyt.orgE<gt>.
+Copyright 2002, 2003, 2004 by Audrey Tang E<lt>cpan@audreyt.orgE<gt>.
 Copyright 2006 by Kuang-che Wu E<lt>kcwu@csie.orgE<gt>.
 
 This program is free software; you can redistribute it and/or 

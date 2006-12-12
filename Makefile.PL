@@ -33,7 +33,7 @@ BEGIN {
     @MAKEOPTS = (
 	EXE_FILES	=> [ <bin/*> ],
 	ABSTRACT	=> 'Traditional and Simplified Chinese mappings',
-	AUTHOR		=> 'Audreyt Tang <cpan@audreyt.org>',
+	AUTHOR		=> 'Audrey Tang <cpan@audreyt.org>',
 	NAME		=> 'Encode::HanConvert',
 	VERSION_FROM	=> "lib/Encode/HanConvert.pm",
 	'dist'		=> {
