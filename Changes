@@ -1,3 +1,10 @@
+[Changes for 0.34 - Jul 17, 2007]
+
+* Corrected SIGNATURE for a mismatched META.yml entry.
+
+* Switched from ExtUtils::MakeMaker to Module::Install to better determine
+  the install site's capability to run C compilers.
+
 [Changes for 0.33 - Dec 12, 2006]
 
 * Fix a bug that b2g.pl and g2b.pl with -u flag won't set encoding correct if

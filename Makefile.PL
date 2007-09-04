@@ -1,8 +1,4 @@
-# $File: //member/autrijus/Encode-HanConvert/Makefile.PL $ $Author: autrijus $
-# $Revision: #12 $ $Change: 10738 $ $DateTime: 2004/06/03 20:56:41 $
-
-use strict;
-use ExtUtils::MakeMaker;
+use inc::Module::Install;
 use Config;
 
 use vars qw(@MAKEOPTS $Path);
@@ -10,19 +6,11 @@ use vars qw(@MAKEOPTS $Path);
 use File::Spec;
 use File::Basename;
 
-# check if we can run some command
-sub _can_run {
-    my $command = shift;
-
-    for my $dir (split /$Config{path_sep}/, $ENV{PATH}) {
-        my $abs = File::Spec->catfile($dir, $command);
-        return $abs if $abs = MM->maybe_command($abs);
-    }
-
-    return;
-}
-
 BEGIN {
+    name 'Encode-HanConvert';
+    requires perl => 5.006;
+    all_from 'lib/Encode/HanConvert.pm';
+
     # inhibit incorrect utf8iciation of filehandles on Perl 5.8.0
     $ENV{LC_ALL} = $ENV{LC_CTYPE} = $ENV{LANG} = 'C';
 
@@ -43,11 +31,13 @@ BEGIN {
 	},
     );
     
-    if ($] < 5.007003 or !_can_run($Config{cc})) {
+    if ($] < 5.007003 or !can_cc) {
 	print "Encode.pm support not possible; Byte <=> Unicode mappings will not be available.\n";
 	print "Unicode support not possible; Unicode mappings will not be available.\n"
 	    if $] < 5.006;
-	WriteMakefile (@MAKEOPTS);
+
+        makemaker_args @MAKEOPTS;
+        sign; WriteAll;
 	exit;
     }
 }
@@ -102,7 +92,7 @@ for my $d (@INC){
 ($encode_h) = sort {$encode_h{$b} <=> $encode_h{$a}} keys %encode_h;
 print "encode.h is at $encode_h\n";
 
-WriteMakefile(
+makemaker_args(
               INC		=> "-I$encode_h",
 #### END_OF_HEADER -- DO NOT EDIT THIS LINE BY HAND! ####
 	      NAME		=> 'Encode::'.$name,
@@ -121,6 +111,7 @@ WriteMakefile(
 	      XSOPT => '-nolinenumbers',
               @MAKEOPTS,
 	      );
+sign; WriteAll;
 
 package MY;
 

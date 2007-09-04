@@ -3,7 +3,7 @@
 package Encode::HanConvert;
 use vars qw/$VERSION @EXPORT @EXPORT_OK/;
 
-$VERSION = '0.33';
+$VERSION = '0.34';
 @EXPORT = qw(
     big5_to_gb trad_to_simp big5_to_simp gb_to_trad big5_to_trad gb_to_simp
     gb_to_big5 simp_to_trad simp_to_big5 trad_to_gb trad_to_big5 simp_to_gb
@@ -116,8 +116,8 @@ Encode::HanConvert - Traditional and Simplified Chinese mappings
 
 =head1 VERSION
 
-This document describes version 0.33 of Encode::HanConvert, released
-Dec 12, 2006.
+This document describes version 0.34 of Encode::HanConvert, released
+July 17, 2007.
 
 =head1 SYNOPSIS
 
@@ -279,12 +279,13 @@ The L<b2g.pl> and L<g2b.pl> utilities installed with this module.
 
 =head1 AUTHORS
 
-Currently maintained by Kuang-che Wu E<lt>kcwu@csie.orgE<gt>.  Orignal author:
-Audrey Tang E<lt>cpan@audreyt.orgE<gt>
+Currently maintained by Kuang-che Wu E<lt>kcwu@csie.orgE<gt>.
+
+Orignal author: Audrey Tang E<lt>cpan@audreyt.orgE<gt>
 
 =head1 COPYRIGHT
 
-Copyright 2002, 2003, 2004 by Audrey Tang E<lt>cpan@audreyt.orgE<gt>.
+Copyright 2002, 2003, 2004, 2007 by Audrey Tang E<lt>cpan@audreyt.orgE<gt>.
 Copyright 2006 by Kuang-che Wu E<lt>kcwu@csie.orgE<gt>.
 
 This program is free software; you can redistribute it and/or 
