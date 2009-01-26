@@ -1,6 +1,4 @@
 #!/usr/bin/perl
-# $File: //member/autrijus/Encode-HanConvert/map/map2pm.pl $ $Author: autrijus $
-# $Revision: #7 $ $Change: 7248 $ $DateTime: 2003/07/30 03:01:38 $
 
 use strict;
 use File::Spec;
@@ -19,26 +17,26 @@ open OUT, '>'. File::Spec->catfile(
 while (<IN>) {
     print OUT $_;
     if (/### include (\S+)/) {
-	my $file = $1;
-	my $is_utf8 = ($file =~ /utf8/);
-	open INC, File::Spec->catdir($path, $file) or die $!;
-	<INC>; <INC>;
-	while (<INC>) {
-	    chomp;
-	    $_ = substr($_, 0, ($is_utf8 ? 7 : 5)) . "\n";
-	    s/\\/\\\\\\/g;
-	    s/^/'/;
-	    s/ /', '/;
-	    s/$/',/;
-	    print OUT $_;
-	}
-	close INC;
+        my $file = $1;
+        my $is_utf8 = ($file =~ /utf8/);
+        open INC, File::Spec->catdir($path, $file) or die $!;
+        <INC>; <INC>;
+        while (<INC>) {
+            chomp;
+            $_ = substr($_, 0, ($is_utf8 ? 7 : 5)) . "\n";
+            s/\\/\\\\\\/g;
+            s/^/'/;
+            s/ /', '/;
+            s/$/',/;
+            print OUT $_;
+        }
+        close INC;
     }
     elsif (/### perl (\S+) ###/) {
-	print OUT "=begin comment\n" unless $] >= $1;
+        print OUT "=begin comment\n" unless $] >= $1;
     }
     elsif (/### \/perl (\S+) ###/) {
-	print OUT "=end comment\n=cut\n" unless $] >= $1;
+        print OUT "=end comment\n=cut\n" unless $] >= $1;
     }
 }
 

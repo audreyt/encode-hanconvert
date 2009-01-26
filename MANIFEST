@@ -27,7 +27,6 @@ map/umap2ucm.pl			Generate UCM from UMap files - Not Installed
 META.yml			Module meta-data in YAML
 README				The Instructions
 SIGNATURE			Signature file
-t/0-signature.t			Signature test
 t/1-basic.t			Sanity test
 t/daode.b5			Test data file
 t/daode.gbk			Test data file

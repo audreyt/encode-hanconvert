@@ -1,18 +1,15 @@
-# $File: //member/autrijus/Encode-HanConvert/lib/Encode/HanConvert/Perl.pm-orig $ $Author: autrijus $
-# $Revision: #8 $ $Change: 10738 $ $DateTime: 2004/06/03 20:56:41 $
-
 package Encode::HanConvert::Perl;
 
 use strict;
 use base 'Exporter';
 use vars qw/$VERSION @EXPORT @EXPORT_OK/;
 
-$VERSION	= '0.05';
-@EXPORT		= qw(big5_to_gb gb_to_big5);
+$VERSION        = '0.06';
+@EXPORT         = qw(big5_to_gb gb_to_big5);
 
 ### perl 5.006 ###
-push @EXPORT,	  qw(trad_to_simp simp_to_trad);
-@EXPORT_OK	= qw(simple trad);
+push @EXPORT,     qw(trad_to_simp simp_to_trad);
+@EXPORT_OK      = qw(simple trad);
 ### /perl 5.006 ###
 
 my (%b2g, %g2b, %t2s, %s2t);
@@ -23,16 +20,16 @@ sub big5_to_gb ($) {
 ### /perl 5.006 ###
 
     eval q*( %b2g = (
-	### include b2g_map.txt ###
+        ### include b2g_map.txt ###
     ) )* unless %b2g;
 
     if (defined wantarray) {
-	my $var = $_[0];
-	$var =~ s/([\xA1-\xF9].)/$b2g{$1}/eg;
-	return $var;
+        my $var = $_[0];
+        $var =~ s/([\xA1-\xF9].)/$b2g{$1}/eg;
+        return $var;
     }
     else {
-	$_[0] =~ s/([\xA1-\xF9].)/$b2g{$1}/eg;
+        $_[0] =~ s/([\xA1-\xF9].)/$b2g{$1}/eg;
     }
 }
 
@@ -42,16 +39,16 @@ sub gb_to_big5 ($) {
 ### /perl 5.006 ###
 
     eval q*( %g2b = (
-	### include g2b_map.txt ###
+        ### include g2b_map.txt ###
     ) )* unless %g2b;
 
     if (defined wantarray) {
-	my $var = $_[0];
-	$var =~ s/([\x81-\xFE].)/$g2b{$1}/eg;
-	return $var;
+        my $var = $_[0];
+        $var =~ s/([\x81-\xFE].)/$g2b{$1}/eg;
+        return $var;
     }
     else {
-	$_[0] =~ s/([\x81-\xFE].)/$g2b{$1}/eg;
+        $_[0] =~ s/([\x81-\xFE].)/$g2b{$1}/eg;
     }
 }
 
@@ -62,18 +59,18 @@ sub trad_to_simp ($) {
     require Encode if $] >= 5.008;
 
     eval q*( %t2s = (
-	### include b2g_map.utf8 ###
+        ### include b2g_map.utf8 ###
     ) )* unless %t2s;
 
     if (defined wantarray) {
-	my $var = $_[0];
-	Encode::_utf8_on($_[0]) if $] >= 5.008;
-	$var =~ s/(\S)/$t2s{$1} || $1/eg;
-	return $var;
+        my $var = $_[0];
+        Encode::_utf8_on($_[0]) if $] >= 5.008;
+        $var =~ s/(\S)/$t2s{$1} || $1/eg;
+        return $var;
     }
     else {
-	Encode::_utf8_on($_[0]) if $] >= 5.008;
-	$_[0] =~ s/(\S)/$t2s{$1} || $1/eg;
+        Encode::_utf8_on($_[0]) if $] >= 5.008;
+        $_[0] =~ s/(\S)/$t2s{$1} || $1/eg;
     }
 }
 
@@ -82,18 +79,18 @@ sub simp_to_trad ($) {
     require Encode if $] >= 5.008;
 
     eval q*( %s2t = (
-	### include g2b_map.utf8 ###
+        ### include g2b_map.utf8 ###
     ) )* unless %s2t;
 
     if (defined wantarray) {
-	my $var = $_[0];
-	Encode::_utf8_on($_[0]) if $] >= 5.008;
-	$var =~ s/(\S)/$s2t{$1} || $1/eg;
-	return $var;
+        my $var = $_[0];
+        Encode::_utf8_on($_[0]) if $] >= 5.008;
+        $var =~ s/(\S)/$s2t{$1} || $1/eg;
+        return $var;
     }
     else {
-	Encode::_utf8_on($_[0]) if $] >= 5.008;
-	$_[0] =~ s/(\S)/$s2t{$1} || $1/eg;
+        Encode::_utf8_on($_[0]) if $] >= 5.008;
+        $_[0] =~ s/(\S)/$s2t{$1} || $1/eg;
     }
 }
 
@@ -151,7 +148,7 @@ Audrey Tang E<lt>cpan@audreyt.orgE<gt>
 
 =head1 COPYRIGHT
 
-Copyright 2002, 2003, 2004 by Audrey Tang E<lt>cpan@audreyt.orgE<gt>.
+Copyright 2002-2009 by Audrey Tang E<lt>cpan@audreyt.orgE<gt>.
 
 This program is free software; you can redistribute it and/or 
 modify it under the same terms as Perl itself.

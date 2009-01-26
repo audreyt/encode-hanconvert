@@ -1,9 +1,8 @@
-# $Id$
-
 package Encode::HanConvert;
+use 5.006;
 use vars qw/$VERSION @EXPORT @EXPORT_OK/;
 
-$VERSION = '0.34';
+$VERSION = '0.35';
 @EXPORT = qw(
     big5_to_gb trad_to_simp big5_to_simp gb_to_trad big5_to_trad gb_to_simp
     gb_to_big5 simp_to_trad simp_to_big5 trad_to_gb trad_to_big5 simp_to_gb
@@ -16,12 +15,12 @@ use base 'Exporter';
 if (eval "use Encode qw|encode decode from_to encode_utf8 decode_utf8|; 1") {
     require XSLoader;
     eval { XSLoader::load(__PACKAGE__, $VERSION) }
-	or eval {local $^W; require Encode::HanConvert::Perl; Encode::HanConvert::Perl->import; 1}
-	    or die "Can't load Perl-based Converter: $@";
+        or eval {local $^W; require Encode::HanConvert::Perl; Encode::HanConvert::Perl->import; 1}
+            or die "Can't load Perl-based Converter: $@";
 }
 else {
     eval {local $^W; require Encode::HanConvert::Perl; Encode::HanConvert::Perl->import; 1}
-	or die "Can't load Perl-based Converter: $@";
+        or die "Can't load Perl-based Converter: $@";
 }
 
 sub big5_to_gb ($) {
@@ -43,13 +42,13 @@ sub gb_to_big5 ($) {
 
 sub trad_to_simp ($) {
     return decode('trad-simp', encode_utf8($_[0]))
-	if (defined wantarray);
+        if (defined wantarray);
     $_[0] = decode('trad-simp', encode_utf8($_[0]));
 }
 
 sub simp_to_trad ($) {
     return decode('simp-trad', encode_utf8($_[0]))
-	if (defined wantarray);
+        if (defined wantarray);
     $_[0] = decode('simp-trad', encode_utf8($_[0]));
 }
 
@@ -116,8 +115,8 @@ Encode::HanConvert - Traditional and Simplified Chinese mappings
 
 =head1 VERSION
 
-This document describes version 0.34 of Encode::HanConvert, released
-July 17, 2007.
+This document describes version 0.35 of Encode::HanConvert, released
+January 27, 2009.
 
 =head1 SYNOPSIS
 
@@ -279,13 +278,12 @@ The L<b2g.pl> and L<g2b.pl> utilities installed with this module.
 
 =head1 AUTHORS
 
-Currently maintained by Kuang-che Wu E<lt>kcwu@csie.orgE<gt>.
-
-Orignal author: Audrey Tang E<lt>cpan@audreyt.orgE<gt>
+Audrey Tang E<lt>cpan@audreyt.orgE<gt>,
+Kuang-che Wu E<lt>kcwu@csie.orgE<gt>.
 
 =head1 COPYRIGHT
 
-Copyright 2002, 2003, 2004, 2007 by Audrey Tang E<lt>cpan@audreyt.orgE<gt>.
+Copyright 2002-2009 by Audrey Tang E<lt>cpan@audreyt.orgE<gt>.
 Copyright 2006 by Kuang-che Wu E<lt>kcwu@csie.orgE<gt>.
 
 This program is free software; you can redistribute it and/or 

@@ -1,15 +1,12 @@
-# $File: //member/autrijus/Encode-HanConvert/AUTHORS $
-# $Revision: #7 $ $Change: 10738 $ $DateTime: 2004/06/03 20:56:41 $
-
 Here is a list of people and their CPAN id, extracted from the Changes
 file and the mailing list archives.  These people have either submitted
 patches or suggestions, or their bug reports or comments have inspired
 the appropriate patches.  Corrections, additions, deletions welcome:
 
 Alan Chen
-Chia-Liang Kao		(CLKAO)
+Chia-Liang Kao          (CLKAO)
 Jedi Lin
-Kuang-Che Wu
+Kuang-Che Wu            (KCWU)
 Mitrophan Chin
 Tim Conrow
 Tulan W. Hu

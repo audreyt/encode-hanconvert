@@ -1,7 +1,6 @@
 #!/usr/local/bin/perl
-# $Id$
 
-$VERSION = '0.12';
+$VERSION = '0.14';
 
 =head1 NAME
 
@@ -39,6 +38,7 @@ C<-p> and C<-u> cannot be used together.
 =cut
 
 use strict;
+use warnings;
 use Getopt::Std;
 
 sub MAP ();
@@ -60,12 +60,12 @@ my $MAP  = +MAP if DICT;
 
 if (@ARGV) {
     for (@ARGV) {
-	unless(open F, $_) {
-	    warn "Can't open $_: $!";
-	    next;
-	}
-	convert(\*F);
-	close F;
+        unless(open F, $_) {
+            warn "Can't open $_: $!";
+            next;
+        }
+        convert(\*F);
+        close F;
     }
 } else {
     convert(\*STDIN);
@@ -74,19 +74,19 @@ if (@ARGV) {
 sub convert {
     my ($fh) = @_;
     if ($] >= 5.008) {
-	if (UTF8) {
-	    binmode($fh, ':encoding(trad-simp)'); binmode(STDOUT, ':utf8')
-	} else {
-	    binmode($fh, ':encoding(big5-simp)'); binmode(STDOUT, ':encoding(gbk)')
-	}
+        if (UTF8) {
+            binmode($fh, ':encoding(trad-simp)'); binmode(STDOUT, ':utf8')
+        } else {
+            binmode($fh, ':encoding(big5-simp)'); binmode(STDOUT, ':encoding(gbk)')
+        }
     }
     while (<$fh>) {
-	unless ($] >= 5.008) {
-	    if (UTF8) { Encode::HanConvert::trad_to_simp($_) }
-	    else { Encode::HanConvert::big5_to_gb($_) }
-	}
-	if (DICT) { s/($KEYS)/$MAP->{$1}/g }
-	print;
+        unless ($] >= 5.008) {
+            if (UTF8) { Encode::HanConvert::trad_to_simp($_) }
+            else { Encode::HanConvert::big5_to_gb($_) }
+        }
+        if (DICT) { s/($KEYS)/$MAP->{$1}/g }
+        print;
     }
 }
 

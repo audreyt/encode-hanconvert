@@ -7,8 +7,7 @@ use File::Spec;
 use File::Basename;
 
 BEGIN {
-    name 'Encode-HanConvert';
-    requires perl => 5.006;
+    name     'Encode-HanConvert';
     all_from 'lib/Encode/HanConvert.pm';
 
     # inhibit incorrect utf8iciation of filehandles on Perl 5.8.0
@@ -16,29 +15,29 @@ BEGIN {
 
     $Path = dirname($0);
     system($^X, File::Spec->catfile($Path, qw(map map2pm.pl)))
-	unless -e File::Spec->catfile($Path, qw(lib Encode HanConvert Perl.pm));
+        unless -e File::Spec->catfile($Path, qw(lib Encode HanConvert Perl.pm));
 
     @MAKEOPTS = (
-	EXE_FILES	=> [ <bin/*> ],
-	ABSTRACT	=> 'Traditional and Simplified Chinese mappings',
-	AUTHOR		=> 'Kuang-che Wu <kcwu@csie.org>',
-	NAME		=> 'Encode::HanConvert',
-	VERSION_FROM	=> "lib/Encode/HanConvert.pm",
-	'dist'		=> {
-	    COMPRESS	=> 'gzip -9f',
-	    SUFFIX	=> 'gz',
-	    DIST_DEFAULT => 'all tardist',
-	},
+        EXE_FILES       => [ <bin/*> ],
+        ABSTRACT        => 'Traditional and Simplified Chinese mappings',
+        AUTHOR          => 'Audrey Tang <cpan@audreyt.org>',
+        NAME            => 'Encode::HanConvert',
+        VERSION_FROM    => "lib/Encode/HanConvert.pm",
+        'dist'          => {
+            COMPRESS    => 'gzip -9f',
+            SUFFIX      => 'gz',
+            DIST_DEFAULT => 'all tardist',
+        },
     );
     
     if ($] < 5.007003 or !can_cc) {
-	print "Encode.pm support not possible; Byte <=> Unicode mappings will not be available.\n";
-	print "Unicode support not possible; Unicode mappings will not be available.\n"
-	    if $] < 5.006;
+        print "Encode.pm support not possible; Byte <=> Unicode mappings will not be available.\n";
+        print "Unicode support not possible; Unicode mappings will not be available.\n"
+            if $] < 5.006;
 
         makemaker_args @MAKEOPTS;
         sign; WriteAll;
-	exit;
+        exit;
     }
 }
 
@@ -73,7 +72,7 @@ require File::Spec;
 my ($enc2xs, $encode_h) = ();
 PATHLOOP:
 for my $d (@Config{qw/bin sitebin vendorbin/}, 
-	   (split /$Config{path_sep}/o, $ENV{PATH})){
+           (split /$Config{path_sep}/o, $ENV{PATH})){
     for my $f (map {$_, "$_.bat"} ('enc2xs', "enc2xs$Config{version}")) {
         my $path = File::Spec->catfile($d, $f);
         -r $path and $enc2xs = $path and last PATHLOOP;
@@ -93,24 +92,24 @@ for my $d (@INC){
 print "encode.h is at $encode_h\n";
 
 makemaker_args(
-              INC		=> "-I$encode_h",
+              INC               => "-I$encode_h",
 #### END_OF_HEADER -- DO NOT EDIT THIS LINE BY HAND! ####
-	      NAME		=> 'Encode::'.$name,
-	      VERSION_FROM	=> "lib/Encode/$name.pm",
-	      OBJECT		=> '$(O_FILES)',
-	      'dist'		=> {
-		  COMPRESS	=> 'gzip -9f',
-		  SUFFIX	=> 'gz',
-		  DIST_DEFAULT => 'all tardist',
-	      },
-	      MAN3PODS	=> {},
-	      PREREQ_PM => {
-			    'Encode'     => "1.41",
+              NAME              => 'Encode::'.$name,
+              VERSION_FROM      => "lib/Encode/$name.pm",
+              OBJECT            => '$(O_FILES)',
+              'dist'            => {
+                  COMPRESS      => 'gzip -9f',
+                  SUFFIX        => 'gz',
+                  DIST_DEFAULT => 'all tardist',
+              },
+              MAN3PODS  => {},
+              PREREQ_PM => {
+                            'Encode'     => "1.41",
                            },
-	      # OS 390 winges about line numbers > 64K ???
-	      XSOPT => '-nolinenumbers',
+              # OS 390 winges about line numbers > 64K ???
+              XSOPT => '-nolinenumbers',
               @MAKEOPTS,
-	      );
+              );
 sign; WriteAll;
 
 package MY;
@@ -123,7 +122,7 @@ sub post_initialize
     # Add the table O_FILES
     foreach my $e (keys %tables)
     {
-	$o{$e.$x} = 1;
+        $o{$e.$x} = 1;
     }
     $o{"$name$x"} = 1;
     $self->{'O_FILES'} = [sort keys %o];
@@ -135,12 +134,12 @@ sub post_initialize
     # $self->{'H'} = [$self->catfile($self->updir,'encode.h')];
     my %xs;
     foreach my $table (keys %tables) {
-	push (@{$self->{'C'}},"$table.c");
-	# Do NOT add $table.h etc. to H_FILES unless we own up as to how they
-	# get built.
-	foreach my $ext (qw($(OBJ_EXT) .c .h .exh .fnm)) {
-	    push (@files,$table.$ext);
-	}
+        push (@{$self->{'C'}},"$table.c");
+        # Do NOT add $table.h etc. to H_FILES unless we own up as to how they
+        # get built.
+        foreach my $ext (qw($(OBJ_EXT) .c .h .exh .fnm)) {
+            push (@files,$table.$ext);
+        }
     }
     $self->{'XS'} = { "$name.xs" => "$name.c" };
     $self->{'clean'}{'FILES'} .= join(' ',@files);
@@ -153,7 +152,7 @@ sub post_initialize
 #include "encode.h"
 END
     foreach my $table (keys %tables) {
-	print XS qq[#include "${table}.h"\n];
+        print XS qq[#include "${table}.h"\n];
     }
     print XS <<"END";
 
@@ -176,13 +175,13 @@ Encode_XSEncoding(pTHX_ encode_t *enc)
  SvREFCNT_dec(sv);
 }
 
-MODULE = Encode::$name	PACKAGE = Encode::$name
+MODULE = Encode::$name  PACKAGE = Encode::$name
 PROTOTYPES: DISABLE
 BOOT:
 {
 END
     foreach my $table (keys %tables) {
-	print XS qq[#include "${table}.exh"\n];
+        print XS qq[#include "${table}.exh"\n];
     }
     print XS "}\n";
     close(XS);
@@ -197,39 +196,39 @@ sub postamble
     $str    .= "$name.c : $name.xs ";
     foreach my $table (keys %tables)
     {
-	$str .= " $table.c";
+        $str .= " $table.c";
     }
     $str .= "\n\n";
     $str .= "$name\$(OBJ_EXT) : $name.c\n\n";
 
     foreach my $table (keys %tables)
     {
-	my $numlines = 1;
-	my $lengthsofar = length($str);
-	my $continuator = '';
-	$str .= "$table.c : Makefile.PL";
-	foreach my $file (@{$tables{$table}})
-	{
-	    $str .= $continuator.' '.$self->catfile($dir,$file);
-	    if ( length($str)-$lengthsofar > 128*$numlines )
-	    {
-		$continuator .= " \\\n\t";
-		$numlines++;
-	    } else {
-		$continuator = '';
-	    }
-	}
-	my $plib   = $self->{PERL_CORE} ? '"-I$(PERL_LIB)"' : '';
-	my $ucopts = '-"Q"';
-	$str .=  
-	    qq{\n\t\$(PERL) $plib $enc2xs $ucopts -o \$\@ -f $table.fnm\n\n};
-	open (FILELIST, ">$table.fnm")
-	    || die "Could not open $table.fnm: $!";
-	foreach my $file (@{$tables{$table}})
-	{
-	    print FILELIST $self->catfile($dir,$file) . "\n";
-	}
-	close(FILELIST);
+        my $numlines = 1;
+        my $lengthsofar = length($str);
+        my $continuator = '';
+        $str .= "$table.c : Makefile.PL";
+        foreach my $file (@{$tables{$table}})
+        {
+            $str .= $continuator.' '.$self->catfile($dir,$file);
+            if ( length($str)-$lengthsofar > 128*$numlines )
+            {
+                $continuator .= " \\\n\t";
+                $numlines++;
+            } else {
+                $continuator = '';
+            }
+        }
+        my $plib   = $self->{PERL_CORE} ? '"-I$(PERL_LIB)"' : '';
+        my $ucopts = '-"Q"';
+        $str .=  
+            qq{\n\t\$(PERL) $plib $enc2xs $ucopts -o \$\@ -f $table.fnm\n\n};
+        open (FILELIST, ">$table.fnm")
+            || die "Could not open $table.fnm: $!";
+        foreach my $file (@{$tables{$table}})
+        {
+            print FILELIST $self->catfile($dir,$file) . "\n";
+        }
+        close(FILELIST);
     }
     return $str;
 }

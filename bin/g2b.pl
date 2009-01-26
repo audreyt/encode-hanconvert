@@ -1,7 +1,6 @@
 #!/usr/local/bin/perl
-# $Id$
 
-$VERSION = '0.12';
+$VERSION = '0.14';
 
 =head1 NAME
 
@@ -39,6 +38,7 @@ C<-p> and C<-u> cannot be used together.
 =cut
 
 use strict;
+use warnings;
 use Getopt::Std;
 
 sub MAP ();
@@ -60,12 +60,12 @@ my $MAP  = +MAP if DICT;
 
 if (@ARGV) {
     for (@ARGV) {
-	unless(open F, $_) {
-	    warn "Can't open $_: $!";
-	    next;
-	}
-	convert(\*F);
-	close F;
+        unless(open F, $_) {
+            warn "Can't open $_: $!";
+            next;
+        }
+        convert(\*F);
+        close F;
     }
 } else {
     convert(\*STDIN);
@@ -74,19 +74,19 @@ if (@ARGV) {
 sub convert {
     my ($fh) = @_;
     if ($] >= 5.008) {
-	if (UTF8) {
-	    binmode($fh, ':encoding(simp-trad)'); binmode(STDOUT, ':utf8')
-	} else {
-	    binmode($fh, ':encoding(gbk-trad)'); binmode(STDOUT, ':encoding(big5)')
-	}
+        if (UTF8) {
+            binmode($fh, ':encoding(simp-trad)'); binmode(STDOUT, ':utf8')
+        } else {
+            binmode($fh, ':encoding(gbk-trad)'); binmode(STDOUT, ':encoding(big5)')
+        }
     }
     while (<$fh>) {
-	unless ($] >= 5.008) {
-	    if (UTF8) { Encode::HanConvert::simp_to_trad($_) }
-	    else { Encode::HanConvert::gb_to_big5($_) }
-	}
-	if (DICT) { s/($KEYS)/$MAP->{$1}/g }
-	print;
+        unless ($] >= 5.008) {
+            if (UTF8) { Encode::HanConvert::simp_to_trad($_) }
+            else { Encode::HanConvert::gb_to_big5($_) }
+        }
+        if (DICT) { s/($KEYS)/$MAP->{$1}/g }
+        print;
     }
 }
 
@@ -442,7 +442,7 @@ Audrey Tang E<lt>cpan@audreyt.orgE<gt>
 
 =head1 COPYRIGHT
 
-Copyright 2002, 2003, 2004 by Audrey Tang E<lt>cpan@audreyt.orgE<gt>.
+Copyright 2002-2009 by Audrey Tang E<lt>cpan@audreyt.orgE<gt>.
 Copyright 2006 by Kuang-che Wu E<lt>kcwu@csie.orgE<gt>.
 
 This program is free software; you can redistribute it and/or 

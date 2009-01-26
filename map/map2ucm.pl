@@ -1,6 +1,4 @@
 #!/usr/bin/perl
-# $File: //member/autrijus/Encode-HanConvert/map/map2ucm.pl $ $Author: autrijus $
-# $Revision: #2 $ $Change: 3939 $ $DateTime: 2003/01/27 22:52:26 $
 
 use strict;
 use Encode 1.41;
@@ -28,12 +26,12 @@ sub conv {
 
     <IN>; <IN>;
     while (<IN>) {
-	my $uchar = decode($enc, substr($_, 3, 2)) or next;
-	printf OUT "<U%04X> \\x%02X\\x%02X |%u\n",
-		   ord($uchar),
-		   ord(substr($_, 0, 1)),
-		   ord(substr($_, 1, 1)),
-		   0;	# XXX - suggestions welcome to the fallback char here
+        my $uchar = decode($enc, substr($_, 3, 2)) or next;
+        printf OUT "<U%04X> \\x%02X\\x%02X |%u\n",
+                   ord($uchar),
+                   ord(substr($_, 0, 1)),
+                   ord(substr($_, 1, 1)),
+                   0; # XXX - suggestions welcome to the fallback char here
     }
 
     print OUT +B5FOOTER() unless $target =~ /gbk/i;

@@ -1,3 +1,9 @@
+[Changes for 0.35 - Jan 27, 2009]
+
+* Converted tabs to spaces in programs and modules.
+
+* Updated Module::Install version in inc/ to 0.77.
+
 [Changes for 0.34 - Jul 17, 2007]
 
 * Corrected SIGNATURE for a mismatched META.yml entry.
