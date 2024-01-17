@@ -1,6 +1,6 @@
 const fetchOrLoad = async (fn) => {
   if (globalThis.Deno) {
-    return await Deno.readTextFile(fn);
+    return await Deno.readTextFile("." + fn);
   }
   return await (await fetch(fn)).text();
 };
@@ -26,8 +26,8 @@ const fetchMap = async (fn, reverse, map = {}) => {
 
 const fetchG2BMap = async () => {
   const map = {};
-  await fetchMap("../map/g2b_map.utf8", false, map);
-  await fetchMap("../map/b2g_map.utf8", true, map);
+  await fetchMap("./map/g2b_map.utf8", false, map);
+  await fetchMap("./map/b2g_map.utf8", true, map);
   return map;
 };
 
