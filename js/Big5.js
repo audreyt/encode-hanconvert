@@ -1,12 +1,5 @@
-const fetchOrLoad = async (fn) => {
-  if (globalThis.Deno) {
-    return await Deno.readTextFile("." + fn);
-  }
-  return await (await fetch(fn)).text();
-};
-
 const fetchMap = async (fn, reverse, map = {}) => {
-  const txt = await fetchOrLoad(fn);
+  const txt = await (await fetch(fn)).text();
   const ss = txt.split("\n");
   for (let i = 2; i < ss.length; i++) {
     const s = ss[i];
@@ -26,8 +19,9 @@ const fetchMap = async (fn, reverse, map = {}) => {
 
 const fetchG2BMap = async () => {
   const map = {};
-  await fetchMap("./map/g2b_map.utf8", false, map);
-  await fetchMap("./map/b2g_map.utf8", true, map);
+  const baseurl = "https://code4fukui.github.io/encode-hanconvert/"
+  await fetchMap(baseurl + "map/g2b_map.utf8", false, map);
+  await fetchMap(baseurl + "map/b2g_map.utf8", true, map);
   return map;
 };
 
