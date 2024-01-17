@@ -1,0 +1,41 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><link rel="icon" href="data:">
+<title>to Big5 - encode-hancovert</title>
+<body>
+<h1>to Big5 - encode-hancovert</h1>
+<div id="main">
+<textarea id="tasrc"></textarea>
+<div id="cnv">↓ convert</div>
+<textarea id="tadst"></textarea>
+</div>
+
+<div id=src>
+APP: <a href=https://github.com/code4fukui/encode-hanconvert>src on GitHub</a> (forked from <a href=https://github.com/audreyt/encode-hanconvert>audreyt/encode-hanconvert</a>)<br>
+</div>
+
+
+<script type="module">
+import { Big5 } from "./js/Big5.js";
+
+tasrc.onkeyup = () => {
+  const s = tasrc.value;
+  tadst.value = Big5.encode(s);
+};
+</script>
+
+<style>
+textarea {
+  display: block;
+  padding: 5px;
+  margin: 20px;
+  width: 90%;
+  height: 10em;
+}
+#cnv {
+  text-align: center;
+}
+#src {
+  margin: 20px;
+}
+</style>
+</body>
+</html>

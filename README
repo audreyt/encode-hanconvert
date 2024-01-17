@@ -24,6 +24,14 @@ encodings.
 For this module's typical usage and examples, please consult its POD
 documentation.
 
+* in JavaScript
+
+```js
+import { Big5 } from "https://code4fukui.github.io/encode-hanconvert/js/Big5.js";
+
+console.log(Big5.encode("元気？"));
+```
+
 * Copyright
 
 Copyright 2002-2009 by Audrey Tang <cpan@audreyt.org>.
