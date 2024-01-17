@@ -20,8 +20,8 @@ const fetchMap = async (fn, reverse, map = {}) => {
 const fetchG2BMap = async () => {
   const map = {};
   const baseurl = "https://code4fukui.github.io/encode-hanconvert/"
-  await fetchMap(baseurl + "map/g2b_map.utf8", false, map);
   await fetchMap(baseurl + "map/b2g_map.utf8", true, map);
+  await fetchMap(baseurl + "map/g2b_map.utf8", false, map);
   return map;
 };
 

@@ -6,5 +6,5 @@ Deno.test("simple", () => {
   t.assertEquals(gb_to_big5("气"), "氣");
 });
 Deno.test("sentense", () => {
-  t.assertEquals(gb_to_big5("日本的参与！"), "日本的葠與！");
+  t.assertEquals(gb_to_big5("日本的参与！"), "日本的參與！");
 });
